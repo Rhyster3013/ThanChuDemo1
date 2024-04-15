@@ -21,7 +21,7 @@ public class CardDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         List<Card> listCard = new ArrayList<>();
-        String query = "SELECT * FROM card";
+        String query = "SELECT * FROM Card";
         Cursor c = db.rawQuery(query, null);
 
         while (c.moveToNext())
@@ -32,13 +32,14 @@ public class CardDAO {
             temp.setImage(c.getString(2));
             temp.setArtist(c.getString(3));
             temp.setDescription(c.getString(4));
+
             listCard.add(temp);
         }
         return listCard;
     }
     public void Insert(Card p) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //c1: sử dụng contentValues
+        //sử dụng contentValues
         ContentValues values = new ContentValues();
 
         // values.put("id", p.getId());
@@ -46,12 +47,12 @@ public class CardDAO {
         values.put("image", p.getImage());
         values.put("artist", p.getArtist());
         values.put("description", p.getDescription());
+
         db.insert("card", null, values);
-//c2: sử dụng câu query thuần
     }
-    public void Delete(int productId) {
+    public void Delete(int cardId) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-//c1: sử dụng delete
-        db.delete("card", "id=?", new String[] { String.valueOf(productId) });
+
+        db.delete("Card", "id=?", new String[] { String.valueOf(cardId) });
     }
 }
