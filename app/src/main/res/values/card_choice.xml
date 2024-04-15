@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="choice">
+        <item>Character</item>
+        <item>Playing Card</item>
+    </string-array>
+</resources>

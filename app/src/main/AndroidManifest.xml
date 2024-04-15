@@ -13,11 +13,13 @@
         android:theme="@style/Theme.ThanChu"
         tools:targetApi="31">
         <activity
-            android:name=".createCard"
-            android:exported="false" />
+            android:name=".Activities.createCard"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".Activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
