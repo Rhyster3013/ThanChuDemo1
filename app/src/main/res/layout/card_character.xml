@@ -2,15 +2,7 @@
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#86BF44">
-
-    <TextView
-        android:id="@+id/txvElement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#F8C9C9"
-        android:text="Element"
-        android:textSize="24sp" />
+    android:background="#FF9800">
 
     <LinearLayout
         android:layout_width="370dp"
