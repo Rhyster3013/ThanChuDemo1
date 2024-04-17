@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="element">
+        <item> Lửa </item>
+        <item> Gió </item>
+        <item> Nước </item>
+        <item> Đất </item>
+    </string-array>
+</resources>
