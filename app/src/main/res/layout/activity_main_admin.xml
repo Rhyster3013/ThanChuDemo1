@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="5"
+    android:weightSum="20"
     tools:context=".Activities.MainAdmin">
 
     <TextView
@@ -14,19 +14,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Game Informations:"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_weight="1"
+        android:gravity="bottom"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <Button
             android:id="@+id/btnCardChar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_dark"
             app:backgroundTint="@null"
@@ -35,7 +37,7 @@
         <Button
             android:id="@+id/btnCardPlay"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/holo_blue_dark"
             app:backgroundTint="@null"
@@ -44,11 +46,56 @@
         <Button
             android:id="@+id/btnCardType"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/holo_green_dark"
             app:backgroundTint="@null"
             android:text="Card Categories" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Card Update:"
+        android:textSize="24sp"
+        android:layout_weight="1"
+        android:gravity="bottom"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnAddCard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            app:backgroundTint="@null"
+            android:text="New Card" />
+
+        <Button
+            android:id="@+id/btnAddCardType"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            app:backgroundTint="@null"
+            android:text="New Card Categories" />
+
+        <Button
+            android:id="@+id/btnAddRules"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            app:backgroundTint="@null"
+            android:text="Game Rules Edit" />
 
     </LinearLayout>
 

@@ -1,16 +1,28 @@
 package com.example.thanchu.Models;
 
 import java.security.Key;
+import java.util.HashMap;
 
 public class Card {
-    public int id;
+    public String id;
     public String name;
     public String image;
     public String artist;
     public String description;
 
-    public Card(int id, String name, String image, String artist, String description) {
-        this.id = id;
+    public HashMap<String, Object> convertHashMap() {
+        HashMap<String, Object> work = new HashMap<>();
+
+        work.put("id", id);
+        work.put("name", name);
+        work.put("image", image);;
+        work.put("artist", artist);;
+        work.put("description", description);
+
+        return work;
+    }
+
+    public Card(String name, String image, String artist, String description) {
         this.name = name;
         this.image = image;
         this.artist = artist;
@@ -20,11 +32,11 @@ public class Card {
     public Card() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

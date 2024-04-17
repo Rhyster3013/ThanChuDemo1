@@ -4,55 +4,65 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.thanchu.DB.DBHelper;
 import com.example.thanchu.Models.Card;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class CardDAO {
-    DBHelper dbHelper;
-    public CardDAO(Context context) {
-        dbHelper = new DBHelper(context);
-    }
-    public List<Card> GetAll()
+
+    FirebaseFirestore db;
+    Context context;
+    public CardDAO(Context context)
     {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        List<Card> listCard = new ArrayList<>();
-        String query = "SELECT * FROM Card";
-        Cursor c = db.rawQuery(query, null);
-
-        while (c.moveToNext())
-        {
-            Card temp = new Card();
-            temp.setId(c.getInt(0));
-            temp.setName(c.getString(1));
-            temp.setImage(c.getString(2));
-            temp.setArtist(c.getString(3));
-            temp.setDescription(c.getString(4));
-
-            listCard.add(temp);
-        }
-        return listCard;
+        //kết nối với DB hiện tại
+        db = FirebaseFirestore.getInstance();
+        this.context = context;
     }
     public void Insert(Card p) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //sử dụng contentValues
-        ContentValues values = new ContentValues();
-
-        // values.put("id", p.getId());
-        values.put("name", p.getName());
-        values.put("image", p.getImage());
-        values.put("artist", p.getArtist());
-        values.put("description", p.getDescription());
-
-        db.insert("card", null, values);
+        // Add a new document with a generated ID
+        p.setId(UUID.randomUUID().toString());
+        HashMap<String, Object> mapproduct = p.convertHashMap();
+        db.collection("Card").document(p.getId())
+                .set(mapproduct)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Thêm mới thẻ thành công!",Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Thêm mới thẻ thất bại!",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-    public void Delete(int cardId) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        db.delete("Card", "id=?", new String[] { String.valueOf(cardId) });
+    public void Delete(String cardId) {
+        db.collection("Card").document(cardId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Xóa thẻ thành công!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, " Xóa thẻ thất bại!",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

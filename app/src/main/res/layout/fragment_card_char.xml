@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtArtist"
+        android:id="@+id/txvArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
