@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745129446166",
+    "project_id": "testfb-cdd2b",
+    "storage_bucket": "testfb-cdd2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745129446166:android:8fb52277ee9c018d86de37",
+        "android_client_info": {
+          "package_name": "com.example.thanchu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD41z7WUdKECL5X0JlzdHTAPWb6xSIYpyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
