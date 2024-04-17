@@ -1,6 +1,6 @@
 package com.example.thanchu.Models;
 
-public class Goal {
+public class Target {
     private int id;
     private String name;
     private String description;

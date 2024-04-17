@@ -10,6 +10,7 @@ public class Card {
     public String artist;
     public String description;
 
+
     public HashMap<String, Object> convertHashMap() {
         HashMap<String, Object> work = new HashMap<>();
 
