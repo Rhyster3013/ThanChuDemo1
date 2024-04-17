@@ -1,7 +1,16 @@
 package com.example.thanchu.Models;
 
+import java.util.HashMap;
+
 public class CardCharacter extends Card{
     private int hp;
+
+    @Override
+    public HashMap<String, Object> convertHashMap() {
+        HashMap<String, Object> hashMap = super.convertHashMap();
+        hashMap.put("hp", hp);
+        return hashMap;
+    }
 
     public CardCharacter(String name, String image, String artist, String description, int hp) {
         super(name, image, artist, description);
