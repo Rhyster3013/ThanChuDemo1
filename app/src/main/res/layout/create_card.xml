@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:weightSum="3"
     tools:context=".Activities.createCard">
@@ -89,12 +89,26 @@
         android:paddingRight="16dp"
         android:paddingBottom="16dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_weight="1">
 
-    </LinearLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcvEdit"
+            android:name="com.example.thanchu.fragment.edit_char"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/holo_blue_bright"
+            app:backgroundTint="@null"
+            android:text="Save" />
+    </RelativeLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

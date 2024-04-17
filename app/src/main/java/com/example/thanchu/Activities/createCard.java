@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
+import com.example.thanchu.fragment.edit_char;
+import com.example.thanchu.fragment.edit_play;
 
 public class createCard extends AppCompatActivity {
 
@@ -44,10 +46,16 @@ public class createCard extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fcvCardPlay, new card_char())
                             .commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fcvEdit, new edit_char())
+                            .commit();
 
                 } else if (selectedOption.equals("Playing Card")) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fcvCardPlay, new card_play())
+                            .commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fcvEdit, new edit_play())
                             .commit();
                 }
             }
