@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.thanchu.R;
 
@@ -60,7 +62,33 @@ public class edit_play extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_edit_play, container, false);
+
+        Spinner spinnerElement = rootView.findViewById(R.id.spinnerCardElement);
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapterElement = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.element,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        adapterElement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spinnerElement.setAdapter(adapterElement);
+
+        Spinner spinnerType = rootView.findViewById(R.id.spinnerCardType);
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapterType = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.type,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spinnerType.setAdapter(adapterType);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_play, container, false);
+        return rootView ;
     }
 }

@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="#009688"
     android:orientation="vertical"
     android:weightSum="8"
-    android:layout_gravity="bottom"
     tools:context=".fragment.edit_play">
 
     <TextView
