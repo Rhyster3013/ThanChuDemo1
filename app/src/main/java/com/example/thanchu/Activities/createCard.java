@@ -1,9 +1,11 @@
 package com.example.thanchu.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,12 +16,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.thanchu.Adapters.CardAdapter;
+import com.example.thanchu.DAO.CardDAO;
 import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
 import com.example.thanchu.fragment.edit_char;
 import com.example.thanchu.fragment.edit_play;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class createCard extends AppCompatActivity {
 
@@ -28,31 +35,45 @@ public class createCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_card);
 
+        CardDAO cardDAO =new CardDAO(createCard.this);
+        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
+
+        cardAdapter.listenCardFirestore(FirebaseFirestore.getInstance());
+
         EditText txbName = findViewById(R.id.txbName);
-        String txbname = txbName.getText().toString();
-
         EditText txbArtist = findViewById(R.id.txbArtist);
-        String txbartist = txbArtist.getText().toString();
-
         EditText txbDescription = findViewById(R.id.txbDescription);
-        String txbdescription = txbDescription.getText().toString();
-
         EditText txbImage = findViewById(R.id.txbImage);
-        String txbimage = txbImage.getText().toString();
 
         Button btnSummit = findViewById(R.id.btnSummit);
         Button btnSave = findViewById(R.id.btnSaveCard);
+        Button btnExit = findViewById(R.id.btnExit);
 
         Spinner spinner = findViewById(R.id.spinnerCardChoice);
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(createCard.this, MainAdmin.class);
+                startActivity(back);
+            }
+        });
 
         btnSummit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String txbname = txbName.getText().toString();
+                String txbartist = txbArtist.getText().toString();
+                String txbdescription = txbDescription.getText().toString();
+                String txbimage = txbImage.getText().toString();
+
                 Card card = new Card(txbname, txbimage, txbartist, txbdescription);
                 Bundle bundle = new Bundle();
 
                 bundle.putSerializable("KEY_SER_CARD", card);
                 //bundle.putString("key", txbname);
+
+                cardAdapter.insertItem(card);
 
                 // Tạo Fragment mới và đặt Bundle vào
                 if(spinner.getSelectedItem().toString().equals("Character")){
@@ -73,6 +94,7 @@ public class createCard extends AppCompatActivity {
                 }
             }
         });
+
         // Create an ArrayAdapter using the string array and a default spinner layout.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,

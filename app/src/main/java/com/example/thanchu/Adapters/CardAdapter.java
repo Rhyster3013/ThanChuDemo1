@@ -49,8 +49,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull CardAdapter.ViewHolder holder, int position) {
         Card p = listCard.get(position);
         holder.txtName.setText(p.getName());
-        holder.txtDescription.setText(p.getName());
-        holder.txtArtist.setText(p.getName());
+        holder.txtDescription.setText(p.getDescription());
+        holder.txtArtist.setText(p.getArtist());
         if(p.getImage().startsWith("https://"))
         {
             Glide.with(holder.imgView.getContext()).load(p.getImage()).into(holder.imgView);
@@ -59,7 +59,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listCard.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,7 +83,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     public void listenCardFirestore(FirebaseFirestore db){
-        db.collection("Product").addSnapshotListener(new
+        db.collection("Card").addSnapshotListener(new
          EventListener<QuerySnapshot>() {
              @Override
              public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable

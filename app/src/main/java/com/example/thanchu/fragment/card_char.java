@@ -88,8 +88,4 @@ public class card_char extends Fragment {
     private void setCard(String name, String image, String artist, String description){
 
     }
-
-    private void setCard(String name, String image, String artist, String description, String element, String number){
-
-    }
 }

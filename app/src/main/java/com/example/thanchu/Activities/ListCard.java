@@ -9,10 +9,12 @@ import android.os.Bundle;
 
 import com.example.thanchu.Adapters.CardAdapter;
 import com.example.thanchu.DAO.CardDAO;
+import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListCard extends AppCompatActivity {
 
@@ -30,10 +32,8 @@ public class ListCard extends AppCompatActivity {
         rcvListCard.setAdapter(adapter);
         rcvListCard.setLayoutManager(new LinearLayoutManager(this));
 
-
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvListCard.addItemDecoration(itemDecoration);
-
-
     }
+
 }

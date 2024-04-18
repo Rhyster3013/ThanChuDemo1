@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Summit" />
 
     </LinearLayout>
 
@@ -140,14 +140,32 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"/>
 
-        <Button
-            android:id="@+id/btnSaveCard"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@android:color/holo_blue_bright"
-            app:backgroundTint="@null"
-            android:text="Save" />
+            android:orientation="horizontal"
+            android:weightSum="9">
+
+            <Button
+                android:id="@+id/btnSaveCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:text="Save"
+                android:layout_weight="8"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
+                android:text="Exit"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+
     </RelativeLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
