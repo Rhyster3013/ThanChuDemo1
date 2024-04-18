@@ -1,15 +1,11 @@
 package com.example.thanchu.Activities;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,29 +13,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.thanchu.Adapters.CardAdapter;
-import com.example.thanchu.DAO.CardDAO;
-import com.example.thanchu.Interfaces.DataViewModel;
+import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.Models.Card;
-import com.example.thanchu.Models.CardCharacter;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
 import com.example.thanchu.fragment.edit_char;
 import com.example.thanchu.fragment.edit_play;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
+import org.greenrobot.eventbus.EventBus;
 
 public class createCard extends AppCompatActivity {
-    private DataViewModel sharedViewModel;
+    private SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        sharedViewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
         setContentView(R.layout.create_card);
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 //
 //        CardDAO cardDAO =new CardDAO(createCard.this);
 //        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
@@ -90,28 +82,30 @@ public class createCard extends AppCompatActivity {
                 String txbimage = txbImage.getText().toString();
 
                 Card card = new Card(txbname, txbimage, txbartist, txbdescription);
-                Bundle bundle = new Bundle();
+                sharedViewModel.setCard(card);
 
-                bundle.putSerializable("KEY_SER_CARD", card);
-                //bundle.putString("key", txbname);
-
-                // Tạo Fragment mới và đặt Bundle vào
-                if(spinner.getSelectedItem().toString().equals("Character")){
-                    card_char character = new card_char();
-                    character.setArguments(bundle);
-
-                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-                    trans.replace(R.id.fcvCardPlay, character);
-                    trans.commit();
-                }
-                else if (spinner.getSelectedItem().toString().equals("Playing Card")) {
-                    card_play play = new card_play();
-                    play.setArguments(bundle);
-
-                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-                    trans.replace(R.id.fcvCardPlay, play);
-                    trans.commit();
-                }
+//                Bundle bundle = new Bundle();
+//
+//                bundle.putSerializable("KEY_SER_CARD", card);
+//                //bundle.putString("key", txbname);
+//
+//                // Tạo Fragment mới và đặt Bundle vào
+//                if(spinner.getSelectedItem().toString().equals("Character")){
+//                    card_char character = new card_char();
+//                    character.setArguments(bundle);
+//
+//                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+//                    trans.replace(R.id.fcvCardPlay, character);
+//                    trans.commit();
+//                }
+//                else if (spinner.getSelectedItem().toString().equals("Playing Card")) {
+//                    card_play play = new card_play();
+//                    play.setArguments(bundle);
+//
+//                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+//                    trans.replace(R.id.fcvCardPlay, play);
+//                    trans.commit();
+//                }
             }
         });
 

@@ -2,23 +2,19 @@ package com.example.thanchu.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.example.thanchu.Interfaces.DataViewModel;
+import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.R;
-
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +32,7 @@ public class edit_char extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private DataViewModel viewModel;
+    private SharedViewModel viewModel;
     Button btnSummit;
 
     public edit_char() {
@@ -68,7 +64,7 @@ public class edit_char extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        viewModel = new ViewModelProvider(requireActivity()).get(DataViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
     }
 
     @Override
@@ -77,6 +73,7 @@ public class edit_char extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_edit_char, container, false);
 
         Spinner spinner = rootView.findViewById(R.id.spinnerHP);
+
         // Create an ArrayAdapter using the string array and a default spinner layout.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireContext(),
@@ -89,14 +86,16 @@ public class edit_char extends Fragment {
         spinner.setAdapter(adapter);
 
         // Ánh xạ Button từ Activity chứa Fragment
-        btnSummit = getActivity().findViewById(R.id.btnSummit);
-
-        // Gán sự kiện click cho nút Summit
-        btnSummit.setOnClickListener(new View.OnClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Lấy dữ liệu từ Spinner và cập nhật vào ViewModel
                 String selectedHp = (String) spinner.getSelectedItem();
-                viewModel.selectHp(selectedHp);
+                viewModel.setHp(selectedHp);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 

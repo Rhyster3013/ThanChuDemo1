@@ -4,13 +4,13 @@ import com.example.thanchu.Models.Card;
 import com.example.thanchu.Models.CardCharacter;
 
 public class CardEvent {
-    private CardCharacter card;
+    private Card card;
 
-    public CardEvent(CardCharacter card) {
+    public CardEvent(Card card) {
         this.card = card;
     }
 
-    public CardCharacter getCard() {
+    public Card getCard() {
         return card;
     }
 }

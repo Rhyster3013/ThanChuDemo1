@@ -1,9 +1,9 @@
 package com.example.thanchu.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.thanchu.Interfaces.DataViewModel;
+import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 
@@ -32,7 +32,7 @@ public class card_char extends Fragment {
     private String mParam2;
 
     private TextView txvName, txvImage, txvArtist, txvDescription, txvHp;
-    DataViewModel viewModel;
+    SharedViewModel viewModel;
 
     public card_char() {
         // Required empty public constructor
@@ -63,7 +63,7 @@ public class card_char extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        viewModel = new ViewModelProvider(requireActivity()).get(DataViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
     }
 
     @Override
@@ -77,23 +77,26 @@ public class card_char extends Fragment {
         txvArtist = view.findViewById(R.id.txvArtist);
         txvDescription = view.findViewById(R.id.txvDescription);
         txvHp = view.findViewById(R.id.txvHp);
-//
-//        DataViewModel viewModel = new ViewModelProvider(getActivity()).get(DataViewModel.class);
-//        viewModel.getMyLiveData().observe(getViewLifecycleOwner(), txvHp::setText);
 
-        viewModel.getSelectedHp().observe(getViewLifecycleOwner(), hp -> {
-            // Cập nhật TextView txvHp với giá trị mới
-            txvHp.setText(hp);
+        // Lắng nghe sự thay đổi của LiveData và cập nhật TextView
+        viewModel.getCard().observe(getViewLifecycleOwner(), new Observer<Card>() {
+            @Override
+            public void onChanged(Card card) {
+                // Cập nhật TextView với thông tin của đối tượng Card
+                txvName.setText(card.getName());
+                txvImage.setText(card.getImage());
+                txvArtist.setText(card.getArtist());
+                txvDescription.setText(card.getDescription());
+            }
         });
 
-        if(bundle != null)
-        {
-            Card card = (Card) bundle.getSerializable("KEY_SER_CARD");
-            txvName.setText(card.name);
-            txvImage.setText(card.image);
-            txvArtist.setText(card.artist);
-            txvDescription.setText(card.description);
-        }
+        viewModel.getHp().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String hp) {
+                // Cập nhật TextView với dữ liệu từ Spinner
+                txvHp.setText(hp);
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }
