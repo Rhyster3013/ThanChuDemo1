@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,9 @@ import android.widget.Spinner;
 
 import com.example.thanchu.Adapters.CardAdapter;
 import com.example.thanchu.DAO.CardDAO;
+import com.example.thanchu.Interfaces.DataViewModel;
 import com.example.thanchu.Models.Card;
+import com.example.thanchu.Models.CardCharacter;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
@@ -29,16 +32,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class createCard extends AppCompatActivity {
+    private DataViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//
+//        sharedViewModel = new ViewModelProvider(this).get(DataViewModel.class);
         setContentView(R.layout.create_card);
-
-        CardDAO cardDAO =new CardDAO(createCard.this);
-        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
-
-        cardAdapter.listenCardFirestore(FirebaseFirestore.getInstance());
+//
+//        CardDAO cardDAO =new CardDAO(createCard.this);
+//        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
+//
+//        cardAdapter.listenCardFirestore(FirebaseFirestore.getInstance());
 
         EditText txbName = findViewById(R.id.txbName);
         EditText txbArtist = findViewById(R.id.txbArtist);
@@ -59,6 +65,22 @@ public class createCard extends AppCompatActivity {
             }
         });
 
+//        btnSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String txbname = txbName.getText().toString();
+//                String txbartist = txbArtist.getText().toString();
+//                String txbdescription = txbDescription.getText().toString();
+//                String txbimage = txbImage.getText().toString();
+//
+//                Card card = new Card(txbname, txbimage, txbartist, txbdescription);
+//
+//                cardAdapter.insertItem(card);
+//                if(spinner.getSelectedItem().toString().equals("Character")){
+//                }
+//            }
+//        });
+
         btnSummit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +94,6 @@ public class createCard extends AppCompatActivity {
 
                 bundle.putSerializable("KEY_SER_CARD", card);
                 //bundle.putString("key", txbname);
-
-                cardAdapter.insertItem(card);
 
                 // Tạo Fragment mới và đặt Bundle vào
                 if(spinner.getSelectedItem().toString().equals("Character")){

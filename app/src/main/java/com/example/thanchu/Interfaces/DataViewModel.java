@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class DataViewModel extends ViewModel {
-    private MutableLiveData<String> myLiveData = new
-            MutableLiveData<>();
-    public LiveData<String> getMyLiveData() {
-        return myLiveData;
+    private MutableLiveData<String> selectedHp = new MutableLiveData<>();
+
+    public void selectHp(String hp) {
+        selectedHp.setValue(hp);
     }
-    public void updateData(String newData) {
-        myLiveData.setValue(newData);
+
+    public MutableLiveData<String> getSelectedHp() {
+        return selectedHp;
     }
 }

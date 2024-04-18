@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.thanchu.Interfaces.DataViewModel;
 import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 
@@ -29,7 +31,8 @@ public class card_char extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView txvName, txvImage, txvArtist, txvDescription;
+    private TextView txvName, txvImage, txvArtist, txvDescription, txvHp;
+    DataViewModel viewModel;
 
     public card_char() {
         // Required empty public constructor
@@ -60,6 +63,7 @@ public class card_char extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        viewModel = new ViewModelProvider(requireActivity()).get(DataViewModel.class);
     }
 
     @Override
@@ -72,6 +76,15 @@ public class card_char extends Fragment {
         txvImage = view.findViewById(R.id.imgIllustration);
         txvArtist = view.findViewById(R.id.txvArtist);
         txvDescription = view.findViewById(R.id.txvDescription);
+        txvHp = view.findViewById(R.id.txvHp);
+//
+//        DataViewModel viewModel = new ViewModelProvider(getActivity()).get(DataViewModel.class);
+//        viewModel.getMyLiveData().observe(getViewLifecycleOwner(), txvHp::setText);
+
+        viewModel.getSelectedHp().observe(getViewLifecycleOwner(), hp -> {
+            // Cập nhật TextView txvHp với giá trị mới
+            txvHp.setText(hp);
+        });
 
         if(bundle != null)
         {
