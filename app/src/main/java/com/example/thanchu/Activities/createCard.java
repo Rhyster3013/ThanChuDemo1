@@ -2,13 +2,19 @@ package com.example.thanchu.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
@@ -22,7 +28,51 @@ public class createCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_card);
 
+        EditText txbName = findViewById(R.id.txbName);
+        String txbname = txbName.getText().toString();
+
+        EditText txbArtist = findViewById(R.id.txbArtist);
+        String txbartist = txbArtist.getText().toString();
+
+        EditText txbDescription = findViewById(R.id.txbDescription);
+        String txbdescription = txbDescription.getText().toString();
+
+        EditText txbImage = findViewById(R.id.txbImage);
+        String txbimage = txbImage.getText().toString();
+
+        Button btnSummit = findViewById(R.id.btnSummit);
+        Button btnSave = findViewById(R.id.btnSaveCard);
+
         Spinner spinner = findViewById(R.id.spinnerCardChoice);
+
+        btnSummit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Card card = new Card(txbname, txbimage, txbartist, txbdescription);
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("KEY_SER_CARD", card);
+                //bundle.putString("key", txbname);
+
+                // Tạo Fragment mới và đặt Bundle vào
+                if(spinner.getSelectedItem().toString().equals("Character")){
+                    card_char character = new card_char();
+                    character.setArguments(bundle);
+
+                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+                    trans.replace(R.id.fcvCardPlay, character);
+                    trans.commit();
+                }
+                else if (spinner.getSelectedItem().toString().equals("Playing Card")) {
+                    card_play play = new card_play();
+                    play.setArguments(bundle);
+
+                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+                    trans.replace(R.id.fcvCardPlay, play);
+                    trans.commit();
+                }
+            }
+        });
         // Create an ArrayAdapter using the string array and a default spinner layout.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,

@@ -1,9 +1,10 @@
 package com.example.thanchu.Models;
 
+import java.io.Serializable;
 import java.security.Key;
 import java.util.HashMap;
 
-public class Card {
+public class Card  implements Serializable {
     public String id;
     public String name;
     public String image;

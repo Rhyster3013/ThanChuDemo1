@@ -1,5 +1,6 @@
 package com.example.thanchu.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.thanchu.Models.Card;
 import com.example.thanchu.R;
 
 /**
@@ -25,6 +28,8 @@ public class card_char extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView txvName, txvImage, txvArtist, txvDescription;
 
     public card_char() {
         // Required empty public constructor
@@ -60,7 +65,31 @@ public class card_char extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_card_char, container, false);
+        Bundle bundle = getArguments();
+
+        txvName = view.findViewById(R.id.txvName);
+        txvImage = view.findViewById(R.id.imgIllustration);
+        txvArtist = view.findViewById(R.id.txvArtist);
+        txvDescription = view.findViewById(R.id.txvDescription);
+
+        if(bundle != null)
+        {
+            Card card = (Card) bundle.getSerializable("KEY_SER_CARD");
+            txvName.setText(card.name);
+            txvImage.setText(card.image);
+            txvArtist.setText(card.artist);
+            txvDescription.setText(card.description);
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card_char, container, false);
+        return view;
+    }
+
+    private void setCard(String name, String image, String artist, String description){
+
+    }
+
+    private void setCard(String name, String image, String artist, String description, String element, String number){
+
     }
 }

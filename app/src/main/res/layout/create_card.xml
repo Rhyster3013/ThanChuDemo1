@@ -13,12 +13,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#9BCA89"
+        android:weightSum="12"
         android:orientation="vertical">
 
         <Spinner
             android:id="@+id/spinnerCardChoice"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#89C5CA" />
 
         <TextView
             android:id="@+id/textView3"
@@ -26,15 +29,18 @@
             android:layout_height="wrap_content"
             android:text="Card Name:"
             android:textColor="#000000"
+            android:layout_weight="1"
+            android:gravity="bottom"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/txbName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="11"
             android:inputType="text"
             android:text="Sơn Tinh"
+            android:layout_weight="1"
             android:textSize="20sp" />
 
         <TextView
@@ -43,6 +49,8 @@
             android:layout_height="wrap_content"
             android:text="Artist:"
             android:textColor="#000000"
+            android:layout_weight="1"
+            android:gravity="bottom"
             android:textSize="20sp" />
 
         <EditText
@@ -52,6 +60,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="Kei"
+            android:layout_weight="1"
             android:textSize="20sp" />
 
         <TextView
@@ -59,7 +68,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description:"
+            android:gravity="bottom"
             android:textColor="#000000"
+            android:layout_weight="1"
             android:textSize="20sp" />
 
         <EditText
@@ -69,7 +80,35 @@
             android:ems="10"
             android:inputType="text"
             android:text="Tản Viên Sơn Thánh"
+            android:layout_weight="2"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Image URL:"
+            android:textColor="#000000"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txbImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="ST"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnSummit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
 
     </LinearLayout>
 
@@ -102,7 +141,7 @@
             android:layout_alignParentTop="true"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSaveCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
