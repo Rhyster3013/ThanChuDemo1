@@ -16,9 +16,9 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:paddingLeft="20dp"
         android:paddingTop="30dp"
-        android:paddingEnd="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
         android:weightSum="13">
@@ -80,12 +80,13 @@
 
         <TextView
             android:id="@+id/txvHp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
+            android:layout_gravity="end|bottom"
 
-            android:background="#F8C9C9"
+            android:background="#FFEB3B"
+            android:gravity="center"
             android:text="2"
             android:textColor="#000000"
             android:textSize="34sp"

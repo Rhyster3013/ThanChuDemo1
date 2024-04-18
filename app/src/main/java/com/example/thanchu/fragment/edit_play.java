@@ -3,13 +3,19 @@ package com.example.thanchu.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.R;
 
 /**
@@ -27,6 +33,7 @@ public class edit_play extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private SharedViewModel viewModel;
 
     public edit_play() {
         // Required empty public constructor
@@ -57,12 +64,37 @@ public class edit_play extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_edit_play, container, false);
+        EditText txbNumber = rootView.findViewById(R.id.txbNumber);
+
+//         Khai báo một TextWatcher
+        txbNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    int number = Integer.parseInt(s.toString());
+                    viewModel.setNumber(number);
+                } catch (NumberFormatException e) {
+                    // Handle the case when input is not a valid number
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Do nothing
+            }
+        });
 
         Spinner spinnerElement = rootView.findViewById(R.id.spinnerCardElement);
         // Create an ArrayAdapter using the string array and a default spinner layout.
@@ -87,6 +119,32 @@ public class edit_play extends Fragment {
         adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner.
         spinnerType.setAdapter(adapterType);
+
+        spinnerElement.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedElement = (String) spinnerElement.getSelectedItem();
+                viewModel.setElement(selectedElement);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedType = (String) spinnerType.getSelectedItem();
+                viewModel.setType(selectedType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         // Inflate the layout for this fragment
         return rootView ;

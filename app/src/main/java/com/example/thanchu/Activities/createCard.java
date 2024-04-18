@@ -1,8 +1,6 @@
 package com.example.thanchu.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -13,13 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.thanchu.Adapters.CardCharAdapter;
 import com.example.thanchu.Adapters.CardPlayAdapter;
 import com.example.thanchu.DAO.CardCharDAO;
 import com.example.thanchu.DAO.CardPlayDAO;
 import com.example.thanchu.Interfaces.SharedViewModel;
+import com.example.thanchu.Interfaces.VmCard;
 import com.example.thanchu.Models.Card;
 import com.example.thanchu.Models.CardCharacter;
 import com.example.thanchu.R;
@@ -28,12 +26,19 @@ import com.example.thanchu.fragment.card_play;
 import com.example.thanchu.fragment.edit_char;
 import com.example.thanchu.fragment.edit_play;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 
 public class createCard extends AppCompatActivity {
     private SharedViewModel sharedViewModel;
+    private VmCard vmCard;
+
+//    public void setNumber(Integer number) {
+//        sharedViewModel.setNumber(number);
+//    }
+//
+//    public Integer getNumber() {
+//        return sharedViewModel.getNumber().getValue();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class createCard extends AppCompatActivity {
 
         setContentView(R.layout.create_card);
         sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        //vmCard = new ViewModelProvider(this).get(vmCard.class);
 //
 //        CardDAO cardDAO =new CardDAO(createCard.this);
 //        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
@@ -49,7 +55,6 @@ public class createCard extends AppCompatActivity {
 
         CardCharDAO cardCharDAO = new CardCharDAO(createCard.this);
         CardCharAdapter cardCharAdapter = new CardCharAdapter(new ArrayList<>(), cardCharDAO);
-
         CardPlayDAO cardPlayDAO = new CardPlayDAO(createCard.this);
         CardPlayAdapter cardPlayAdapter = new CardPlayAdapter(new ArrayList<>(), cardPlayDAO);
 

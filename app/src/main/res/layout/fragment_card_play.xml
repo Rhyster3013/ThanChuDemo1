@@ -13,11 +13,11 @@
 
     <TextView
         android:id="@+id/txvElement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:background="#F8C9C9"
-        android:text=" Element "
+        android:text="E"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
