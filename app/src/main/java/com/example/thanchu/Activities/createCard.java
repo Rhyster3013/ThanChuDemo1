@@ -2,6 +2,7 @@ package com.example.thanchu.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -12,9 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.thanchu.Adapters.CardCharAdapter;
+import com.example.thanchu.Adapters.CardPlayAdapter;
+import com.example.thanchu.DAO.CardCharDAO;
+import com.example.thanchu.DAO.CardPlayDAO;
 import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.Models.Card;
+import com.example.thanchu.Models.CardCharacter;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
@@ -22,6 +29,8 @@ import com.example.thanchu.fragment.edit_char;
 import com.example.thanchu.fragment.edit_play;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 public class createCard extends AppCompatActivity {
     private SharedViewModel sharedViewModel;
@@ -37,6 +46,12 @@ public class createCard extends AppCompatActivity {
 //        CardAdapter cardAdapter =new CardAdapter(new ArrayList<>(), cardDAO);
 //
 //        cardAdapter.listenCardFirestore(FirebaseFirestore.getInstance());
+
+        CardCharDAO cardCharDAO = new CardCharDAO(createCard.this);
+        CardCharAdapter cardCharAdapter = new CardCharAdapter(new ArrayList<>(), cardCharDAO);
+
+        CardPlayDAO cardPlayDAO = new CardPlayDAO(createCard.this);
+        CardPlayAdapter cardPlayAdapter = new CardPlayAdapter(new ArrayList<>(), cardPlayDAO);
 
         EditText txbName = findViewById(R.id.txbName);
         EditText txbArtist = findViewById(R.id.txbArtist);
@@ -57,21 +72,26 @@ public class createCard extends AppCompatActivity {
             }
         });
 
-//        btnSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String txbname = txbName.getText().toString();
-//                String txbartist = txbArtist.getText().toString();
-//                String txbdescription = txbDescription.getText().toString();
-//                String txbimage = txbImage.getText().toString();
-//
-//                Card card = new Card(txbname, txbimage, txbartist, txbdescription);
-//
-//                cardAdapter.insertItem(card);
-//                if(spinner.getSelectedItem().toString().equals("Character")){
-//                }
-//            }
-//        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txbname = txbName.getText().toString();
+                String txbartist = txbArtist.getText().toString();
+                String txbdescription = txbDescription.getText().toString();
+                String txbimage = txbImage.getText().toString();
+
+                if(spinner.getSelectedItem().toString().equals("Character")){
+                    CardCharacter card = new CardCharacter(txbname, txbimage, txbartist, txbdescription, sharedViewModel.getHp().getValue());
+                    cardCharAdapter.insertItem(card);
+                }
+
+                if(spinner.getSelectedItem().toString().equals("Playing Card")){
+                    CardCharAdapter adapter = new CardCharAdapter();
+                    CardCharacter card = new CardCharacter(txbname, txbimage, txbartist, txbdescription, sharedViewModel.getHp().toString());
+                    adapter.insertItem(card);
+                }
+            }
+        });
 
         btnSummit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,29 +103,6 @@ public class createCard extends AppCompatActivity {
 
                 Card card = new Card(txbname, txbimage, txbartist, txbdescription);
                 sharedViewModel.setCard(card);
-
-//                Bundle bundle = new Bundle();
-//
-//                bundle.putSerializable("KEY_SER_CARD", card);
-//                //bundle.putString("key", txbname);
-//
-//                // Tạo Fragment mới và đặt Bundle vào
-//                if(spinner.getSelectedItem().toString().equals("Character")){
-//                    card_char character = new card_char();
-//                    character.setArguments(bundle);
-//
-//                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-//                    trans.replace(R.id.fcvCardPlay, character);
-//                    trans.commit();
-//                }
-//                else if (spinner.getSelectedItem().toString().equals("Playing Card")) {
-//                    card_play play = new card_play();
-//                    play.setArguments(bundle);
-//
-//                    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
-//                    trans.replace(R.id.fcvCardPlay, play);
-//                    trans.commit();
-//                }
             }
         });
 

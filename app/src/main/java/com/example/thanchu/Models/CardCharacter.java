@@ -3,7 +3,7 @@ package com.example.thanchu.Models;
 import java.util.HashMap;
 
 public class CardCharacter extends Card{
-    private int hp;
+    private String hp;
 
     @Override
     public HashMap<String, Object> convertHashMap() {
@@ -12,16 +12,16 @@ public class CardCharacter extends Card{
         return hashMap;
     }
 
-    public CardCharacter(String name, String image, String artist, String description, int hp) {
+    public CardCharacter(String name, String image, String artist, String description, String hp) {
         super(name, image, artist, description);
         this.hp = hp;
     }
 
-    public CardCharacter(int hp) {
+    public CardCharacter(String hp) {
         this.hp = hp;
     }
 
-    public int getHp() {
+    public String getHp() {
         return hp;
     }
 }
