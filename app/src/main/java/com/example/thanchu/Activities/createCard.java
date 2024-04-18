@@ -20,6 +20,7 @@ import com.example.thanchu.Interfaces.SharedViewModel;
 import com.example.thanchu.Interfaces.VmCard;
 import com.example.thanchu.Models.Card;
 import com.example.thanchu.Models.CardCharacter;
+import com.example.thanchu.Models.CardPlay;
 import com.example.thanchu.R;
 import com.example.thanchu.fragment.card_char;
 import com.example.thanchu.fragment.card_play;
@@ -91,9 +92,8 @@ public class createCard extends AppCompatActivity {
                 }
 
                 if(spinner.getSelectedItem().toString().equals("Playing Card")){
-                    CardCharAdapter adapter = new CardCharAdapter();
-                    CardCharacter card = new CardCharacter(txbname, txbimage, txbartist, txbdescription, sharedViewModel.getHp().toString());
-                    adapter.insertItem(card);
+                    CardPlay card = new CardPlay(txbname, txbimage, txbartist, txbdescription, Integer.parseInt(String.valueOf(sharedViewModel.getNumber().getValue())), sharedViewModel.getColor().getValue(), sharedViewModel.getElement().getValue(), sharedViewModel.getType().getValue());
+                    cardPlayAdapter.insertItem(card);
                 }
             }
         });
