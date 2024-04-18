@@ -1,5 +1,6 @@
 package com.example.thanchu.Adapters;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,13 +49,46 @@ public class CardPlayAdapter extends RecyclerView.Adapter<CardPlayAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull CardPlayAdapter.ViewHolder holder, int position) {
         CardPlay p = listPlay.get(position);
+        String element = p.getElement();
+        String type = p.getType();
 
         holder.txtNamePlay.setText(p.getName());
-        holder.txtElement.setText(p.getElement());
+        holder.txtElement.setText(p.getNumber());
         holder.txtArtistPlay.setText(p.getArtist());
         if(p.getImage().startsWith("https://"))
         {
             Glide.with(holder.imgPlay.getContext()).load(p.getImage()).into(holder.imgPlay);
+        }
+
+        switch (type){
+            case "Kế sách":
+                holder.txtNamePlay.setBackgroundColor(Color.BLUE);
+                break;
+            case "Cơ bản":
+                holder.txtNamePlay.setBackgroundColor(Color.rgb(144, 238, 144));
+                break;
+            case "Trang bị":
+                holder.txtNamePlay.setBackgroundColor(Color.rgb(0, 100, 0));
+                break;
+        }
+
+        switch (element){
+            case "Lửa":
+                holder.txtElement.setBackgroundColor(Color.RED);
+                holder.txtElement.setTextColor(Color.BLACK);
+                break;
+            case "Nước":
+                holder.txtElement.setBackgroundColor(Color.BLUE);
+                holder.txtElement.setTextColor(Color.WHITE);
+                break;
+            case "Gió":
+                holder.txtElement.setBackgroundColor(Color.GRAY);
+                holder.txtElement.setTextColor(Color.BLACK);
+                break;
+            case "Đất":
+                holder.txtElement.setBackgroundColor(Color.rgb(165, 42, 42));
+                holder.txtElement.setTextColor(Color.WHITE);
+                break;
         }
     }
 

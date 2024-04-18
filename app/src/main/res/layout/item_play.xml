@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="#FF5722"
+                android:background="#FFEB3B"
 
                 android:gravity="center"
                 android:text="Lửa"

@@ -6,6 +6,7 @@ public class CardPlay extends Card{
     private int number;
     private String color;
     private String element;
+    private String type;
 
     @Override
     public HashMap<String, Object> convertHashMap() {
@@ -13,24 +14,28 @@ public class CardPlay extends Card{
         hashMap.put("number", number);
         hashMap.put("color", color);
         hashMap.put("element", element);
+        hashMap.put("type", type);
         return hashMap;
     }
 
-    public CardPlay(String name, String image, String artist, String description, int number, String color, String element) {
+    public CardPlay(String name, String image, String artist, String description, int number, String color, String element, String type) {
         super(name, image, artist, description);
         this.number = number;
         this.color = color;
         this.element = element;
-    }
-
-    public CardPlay(int number, String color, String element) {
-        this.number = number;
-        this.color = color;
-        this.element = element;
+        this.type = type;
     }
 
     public CardPlay(String name, String image, String artist, String description) {
         super(name, image, artist, description);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getNumber() {
