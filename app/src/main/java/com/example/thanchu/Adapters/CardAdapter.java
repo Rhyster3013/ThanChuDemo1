@@ -83,8 +83,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     public void listenCardFirestore(FirebaseFirestore db){
-        db.collection("Card").addSnapshotListener(new
-         EventListener<QuerySnapshot>() {
+        db.collection("Card").addSnapshotListener(new EventListener<QuerySnapshot>() {
              @Override
              public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable
              FirebaseFirestoreException e) {
