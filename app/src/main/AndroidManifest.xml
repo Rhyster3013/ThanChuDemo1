@@ -16,9 +16,11 @@
         tools:targetApi="31" >
         <activity
             android:name=".Activities.ListPlay"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".Activities.ListChar"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".Activities.ListCard"

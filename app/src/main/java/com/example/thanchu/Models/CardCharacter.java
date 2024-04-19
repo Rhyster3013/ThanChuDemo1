@@ -12,6 +12,9 @@ public class CardCharacter extends Card{
         return hashMap;
     }
 
+    public CardCharacter() {
+    }
+
     public CardCharacter(String name, String image, String artist, String description, String hp) {
         super(name, image, artist, description);
         this.hp = hp;

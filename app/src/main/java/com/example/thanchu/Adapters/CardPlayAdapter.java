@@ -51,7 +51,7 @@ public class CardPlayAdapter extends RecyclerView.Adapter<CardPlayAdapter.ViewHo
         String type = p.getType();
 
         holder.txtNamePlay.setText(p.getName());
-        holder.txtElement.setText(p.getNumber());
+        holder.txtElement.setText(String.valueOf(p.getNumber()));
         holder.txtArtistPlay.setText(p.getArtist());
         if(p.getImage().startsWith("https://"))
         {

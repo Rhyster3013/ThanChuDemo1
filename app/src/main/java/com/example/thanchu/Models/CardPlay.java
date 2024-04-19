@@ -26,6 +26,9 @@ public class CardPlay extends Card{
         this.type = type;
     }
 
+    public CardPlay() {
+    }
+
     public CardPlay(String name, String image, String artist, String description) {
         super(name, image, artist, description);
     }

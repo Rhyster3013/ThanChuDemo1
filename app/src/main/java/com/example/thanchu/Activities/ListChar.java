@@ -23,15 +23,14 @@ public class ListChar extends AppCompatActivity {
 
         CardCharDAO cardCharDAO = new CardCharDAO(this);
         CardCharAdapter adapter = new CardCharAdapter(new ArrayList<>(), cardCharDAO);
-        if (adapter != null) {
-            adapter.listenCardFirestore(FirebaseFirestore.getInstance());
 
-            RecyclerView rcvListCard = findViewById(R.id.rcvListCard);
-            rcvListCard.setAdapter(adapter);
-            rcvListCard.setLayoutManager(new LinearLayoutManager(this));
+        adapter.listenCardFirestore(FirebaseFirestore.getInstance());
 
-            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            rcvListCard.addItemDecoration(itemDecoration);
-        }
+        RecyclerView rcvListChar = findViewById(R.id.rcvListChar);
+        rcvListChar.setAdapter(adapter);
+        rcvListChar.setLayoutManager(new LinearLayoutManager(this));
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvListChar.addItemDecoration(itemDecoration);
     }
 }

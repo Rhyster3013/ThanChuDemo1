@@ -23,15 +23,14 @@ public class ListPlay extends AppCompatActivity {
 
         CardPlayDAO cardPlayDAO = new CardPlayDAO(this);
         CardPlayAdapter adapter = new CardPlayAdapter(new ArrayList<>(), cardPlayDAO);
-        if (adapter != null) {
-            adapter.listenCardFirestore(FirebaseFirestore.getInstance());
 
-            RecyclerView rcvListCard = findViewById(R.id.rcvListCard);
-            rcvListCard.setAdapter(adapter);
-            rcvListCard.setLayoutManager(new LinearLayoutManager(this));
+        adapter.listenCardFirestore(FirebaseFirestore.getInstance());
 
-            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-            rcvListCard.addItemDecoration(itemDecoration);
-        }
+        RecyclerView rcvListPlay = findViewById(R.id.rcvListPlay);
+        rcvListPlay.setAdapter(adapter);
+        rcvListPlay.setLayoutManager(new LinearLayoutManager(this));
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvListPlay.addItemDecoration(itemDecoration);
     }
 }

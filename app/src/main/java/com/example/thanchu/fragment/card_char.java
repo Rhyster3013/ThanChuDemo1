@@ -95,6 +95,12 @@ public class card_char extends Fragment {
             public void onChanged(String hp) {
                 // Cập nhật TextView với dữ liệu từ Spinner
                 txvHp.setText(hp);
+                if("1.5/2".equals(hp)){
+                    txvHp.setTextSize(28);
+                }
+                else {
+                    txvHp.setTextSize(34);
+                }
             }
         });
         // Inflate the layout for this fragment
