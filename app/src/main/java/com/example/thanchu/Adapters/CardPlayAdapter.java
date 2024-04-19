@@ -12,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.thanchu.Activities.ListCard;
 import com.example.thanchu.DAO.CardPlayDAO;
-import com.example.thanchu.Models.Card;
 import com.example.thanchu.Models.CardPlay;
 import com.example.thanchu.R;
 import com.google.firebase.firestore.DocumentChange;

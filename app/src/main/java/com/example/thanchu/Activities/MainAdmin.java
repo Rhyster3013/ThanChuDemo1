@@ -21,20 +21,19 @@ public class MainAdmin extends AppCompatActivity {
         Button btnCardChar = findViewById(R.id.btnCardChar);
 
         Intent create = new Intent(MainAdmin.this, createCard.class);
-        Intent listPlay = new Intent(MainAdmin.this, ListCard.class);
+        Intent listPlay = new Intent(MainAdmin.this, ListPlay.class);
+        Intent listChar = new Intent(MainAdmin.this, ListChar.class);
 
         btnCardChar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listPlay.putExtra("card_type", "character");
-                startActivity(listPlay);
+                startActivity(listChar);
             }
         });
 
         btnCardPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listPlay.putExtra("card_type", "play");
                 startActivity(listPlay);
             }
         });
