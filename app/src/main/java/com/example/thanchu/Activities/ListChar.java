@@ -2,6 +2,7 @@ package com.example.thanchu.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,10 +26,11 @@ public class ListChar extends AppCompatActivity {
         CardCharAdapter adapter = new CardCharAdapter(new ArrayList<>(), cardCharDAO);
 
         adapter.listenCardFirestore(FirebaseFirestore.getInstance());
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
 
         RecyclerView rcvListChar = findViewById(R.id.rcvListChar);
         rcvListChar.setAdapter(adapter);
-        rcvListChar.setLayoutManager(new LinearLayoutManager(this));
+        rcvListChar.setLayoutManager(layoutManager);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvListChar.addItemDecoration(itemDecoration);

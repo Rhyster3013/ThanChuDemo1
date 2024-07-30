@@ -1,5 +1,6 @@
 package com.example.thanchu.Adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -50,6 +52,15 @@ public class CardPlayAdapter extends RecyclerView.Adapter<CardPlayAdapter.ViewHo
         String element = p.getElement();
         String type = p.getType();
 
+        Context context = holder.itemView.getContext();
+        int colorPhong = ContextCompat.getColor(context, R.color.Phong);
+        int colorHoa = ContextCompat.getColor(context, R.color.Hoa);
+        int colorThuy = ContextCompat.getColor(context, R.color.Thuy);
+        int colorTho = ContextCompat.getColor(context, R.color.Tho);
+        int colorKeSach = ContextCompat.getColor(context, R.color.KeSach);
+        int colorTrangBi = ContextCompat.getColor(context, R.color.TrangBi);
+        int colorCoBan = ContextCompat.getColor(context, R.color.CoBan);
+
         holder.txtNamePlay.setText(p.getName());
         holder.txtElement.setText(String.valueOf(p.getNumber()));
         holder.txtArtistPlay.setText(p.getArtist());
@@ -60,32 +71,32 @@ public class CardPlayAdapter extends RecyclerView.Adapter<CardPlayAdapter.ViewHo
 
         switch (type){
             case "Kế sách":
-                holder.txtNamePlay.setBackgroundColor(Color.BLUE);
+                holder.txtNamePlay.setBackgroundColor(colorKeSach);
                 break;
             case "Cơ bản":
-                holder.txtNamePlay.setBackgroundColor(Color.rgb(144, 238, 144));
+                holder.txtNamePlay.setBackgroundColor(colorCoBan);
                 break;
             case "Trang bị":
-                holder.txtNamePlay.setBackgroundColor(Color.rgb(0, 100, 0));
+                holder.txtNamePlay.setBackgroundColor(colorTrangBi);
                 break;
         }
 
         switch (element){
             case "Lửa":
-                holder.txtElement.setBackgroundColor(Color.RED);
-                holder.txtElement.setTextColor(Color.BLACK);
+                holder.txtElement.setBackgroundColor(colorHoa);
+                holder.txtElement.setTextColor(Color.WHITE);
                 break;
             case "Nước":
-                holder.txtElement.setBackgroundColor(Color.BLUE);
+                holder.txtElement.setBackgroundColor(colorThuy);
                 holder.txtElement.setTextColor(Color.WHITE);
                 break;
             case "Gió":
-                holder.txtElement.setBackgroundColor(Color.GRAY);
+                holder.txtElement.setBackgroundColor(colorPhong);
                 holder.txtElement.setTextColor(Color.BLACK);
                 break;
             case "Đất":
-                holder.txtElement.setBackgroundColor(Color.rgb(165, 42, 42));
-                holder.txtElement.setTextColor(Color.WHITE);
+                holder.txtElement.setBackgroundColor(colorTho);
+                holder.txtElement.setTextColor(Color.BLACK);
                 break;
         }
     }

@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Phong">#FF5BF8C1</color>
+    <color name="Thuy">#FF2196F3</color>
+    <color name="Tho">#FFAA4218</color>
+    <color name="Hoa">#FFFB4D08</color>
+    <color name="CoBan">#FF13C64F</color>
+    <color name="KeSach">#FF6ACCF8</color>
+    <color name="TrangBi">#FF076803</color>
+    <color name="NhanVat">#FFF1892F</color>
 </resources>
